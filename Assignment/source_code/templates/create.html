@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block age %}
+    <h1>{% block title %} Create a New Post {% endblock %}</h1>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="title">Brand</label>
+            <input type="text" name="Brand" placeholder="Brand"
+                   class="form-control" required
+                   value="{{ request.form['Brand'] }}" />
+        </div>
+        <div class="form-group">
+            <label for="title">Name</label>
+            <input type="text" name="Name" placeholder="Name"
+                   class="form-control" required
+                   value="{{ request.form['Name'] }}"/>
+        </div>
+        <div class="form-group">
+            <label for="title">Old Price</label>
+            <input name="OldPrice" placeholder="Old Price"
+                   class="form-control" type="number"
+                   value="{{ request.form['OldPrice'] }}" min="0"/>
+        </div>
+        <div class="form-group">
+            <label for="title">New Price</label>
+            <input name="NewPrice" placeholder="New Price"
+                   class="form-control" type="number"
+                   value="{{ request.form['NewPrice'] }}" min="0"/>
+        </div>
+        <div class="form-group">
+            <label for="title">Percent Discount</label>
+            <input name="PercentDiscount" placeholder="Percent Discount"
+                   class="form-control" type="number"
+                   value="{{ request.form['PercentDiscount'] }}" min="0" max="100"/>
+        </div>
+        <div class="form-check">
+            <input class="form-check-input" name="BestSeller" type="checkbox" id="BestSeller"/>
+            <label class="form-check-label" for="BestSeller">
+                Best Seller
+            </label>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary"
+                    onclick="New laptop has been created!">Submit
+            </button>
+            <a class="btn btn-secondary" href="{{ url_for('laptopBestSeller') }}">Back</a>
+        </div>
+    </form>
+{% endblock %}

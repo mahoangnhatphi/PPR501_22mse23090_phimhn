@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% block age %}
+    <h1>{% block Brand %} Edit "{{ laptop_best_seller.Brand }} {{ laptop_best_seller.Name }}" {% endblock %}</h1>
+    <form method="post">
+        <div class="form-group">
+            <label for="title">Brand</label>
+            <input type="text" name="Brand" placeholder="Brand"
+                   class="form-control"
+                   value="{{ request.form['Brand'] or laptop_best_seller['Brand'] }}" required/>
+        </div>
+        <div class="form-group">
+            <label for="title">Name</label>
+            <input type="text" name="Name" placeholder="Name"
+                   class="form-control"
+                   value="{{ request.form['Name'] or laptop_best_seller['Name'] }}" required/>
+        </div>
+        <div class="form-group">
+            <label for="title">Old Price</label>
+            <input name="OldPrice" placeholder="Old Price"
+                   class="form-control" type="number"
+                   value="{{ request.form['OldPrice'] or laptop_best_seller['OldPrice'] }}" min="0"/>
+        </div>
+        <div class="form-group">
+            <label for="title">New Price</label>
+            <input name="NewPrice" placeholder="New Price"
+                   class="form-control" type="number"
+                   value="{{ request.form['NewPrice'] or laptop_best_seller['NewPrice'] }}" min="0"/>
+        </div>
+        <div class="form-group">
+            <label for="title">Percent Discount</label>
+            <input name="PercentDiscount" placeholder="Percent Discount"
+                   class="form-control" type="number"
+                   value="{{ request.form['PercentDiscount'] or laptop_best_seller['PercentDiscount'] }}"
+                   min="0" max="100"/>
+        </div>
+        <div class="form-check">
+
+            {% if request.form['BestSeller'] or laptop_best_seller['BestSeller'] %}
+                <input class="form-check-input" name="BestSeller" type="checkbox" id="BestSeller" checked/>
+            {% else %}
+                <input class="form-check-input" name="BestSeller" type="checkbox" id="BestSeller"/>
+            {% endif %}
+            <label class="form-check-label" for="BestSeller">
+                Best Seller
+            </label>
+        </div>
+        <div class="form-group">
+            <input type="hidden" name="Id" value="{{ laptop_best_seller['Id'] }}">
+            <button type="submit" class="btn btn-primary inline-block"
+                    onclick="The laptop has been edited successfully!">Submit
+            </button>
+            <a class="class=" btn btn-secondary" href="{{ url_for('laptopBestSeller') }}">Back</a>
+        </div>
+        <div class="form-group">
+        </div>
+
+    </form>
+    <hr>
+{% endblock %}
